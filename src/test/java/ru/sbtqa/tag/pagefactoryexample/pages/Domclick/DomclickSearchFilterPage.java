@@ -8,8 +8,7 @@ import ru.sbtqa.tag.pagefactory.annotations.ActionTitle;
 import ru.sbtqa.tag.pagefactory.annotations.ElementTitle;
 import ru.sbtqa.tag.pagefactory.annotations.PageEntry;
 import ru.sbtqa.tag.pagefactory.annotations.RedirectsTo;
-import ru.sbtqa.tag.pagefactoryexample.blocks.YandexMarket.HeaderBlock;
-import ru.sbtqa.tag.pagefactoryexample.elements.YandexMarket.ProductCard;
+import ru.sbtqa.tag.pagefactoryexample.blocks.Domclick.HeaderBlock;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.CheckBox;
@@ -103,29 +102,9 @@ public class DomclickSearchFilterPage extends Page {
     public Button showList;
 
 
-
-
-
-
-    @ElementTitle("Список товаров")
-    @FindBy(xpath = ".//div[contains(@class,'n-snippet-card2 ')]")
-    private List<ProductCard> productCards;
-
     public DomclickSearchFilterPage(){
         PageFactory.initElements(
                 new HtmlElementDecorator(new HtmlElementLocatorFactory(PageFactory.getDriver())), this);
     }
 
-
-    @ActionTitle("проверяет присутствие продукта")
-    public void compareProductCost(String productName){
-
-        for (ProductCard card: productCards) {
-            if(card.getProductName().toLowerCase().contains(productName.toLowerCase())){
-                return;
-            }
-        }
-
-        Assert.fail("Продукт " + productName +  " не был найден");
-    }
 }
