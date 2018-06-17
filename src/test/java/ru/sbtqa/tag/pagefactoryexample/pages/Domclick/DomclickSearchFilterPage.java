@@ -8,7 +8,6 @@ import ru.sbtqa.tag.pagefactory.annotations.ActionTitle;
 import ru.sbtqa.tag.pagefactory.annotations.ElementTitle;
 import ru.sbtqa.tag.pagefactory.annotations.PageEntry;
 import ru.sbtqa.tag.pagefactory.annotations.RedirectsTo;
-import ru.sbtqa.tag.pagefactoryexample.blocks.Domclick.HeaderBlock;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.CheckBox;
@@ -27,10 +26,10 @@ public class DomclickSearchFilterPage extends Page {
 
     @ElementTitle("Выбор города")
     @FindBy(xpath = "//*[@id=\"content\"]/div/main/div/div[1]/div[2]/form/div/div[1]/div[2]/span")
-    public Button searchCity;
+    public TextInput searchCity;
 
     //Город: Санкт-Петербург
-    @Name("Город")
+    @ElementTitle("Город")
     @FindBy(xpath = "//*[@id=\"content\"]/div/main/div/div[1]/div[2]/form/div/div[1]/div[2]/div[2]/div/div/div/div[1]/input")
     public TextInput city;
 
@@ -46,12 +45,12 @@ public class DomclickSearchFilterPage extends Page {
     @FindBy(xpath = "//*[@id=\"content\"]/div/main/div/div[1]/div[2]/form/div/div[2]/div/div/label[3]/span")
     public CheckBox threeRooms;
 
-    //Цена: от 1000000 до 30000000
-    @Name("Минимальная цена")
+
+    @ElementTitle("Минимальная цена")
     @FindBy(xpath = "//*[@id=\"content\"]/div/main/div/div[1]/div[2]/form/div/div[3]/div/div[1]/input[1]")
     public TextInput fromPrice;
 
-    @Name("Максимальная цена")
+    @ElementTitle("Максимальная цена")
     @FindBy(xpath = "//*[@id=\"content\"]/div/main/div/div[1]/div[2]/form/div/div[3]/div/div[1]/input[2]")
     public TextInput toPice;
 
@@ -66,8 +65,23 @@ public class DomclickSearchFilterPage extends Page {
 
     //Площадь общая: от 30 до 100
     //Площадь кухни: от 8 до 15
-    @ElementTitle("Площадь")
-    public HeaderBlock headerBlock1;
+    @ElementTitle("Общая площадь от")
+    @FindBy(xpath = "//*[@id=\"squareTotalFrom\"]")
+    public TextInput generalFrom;
+
+    @ElementTitle("Общая площадь до")
+    @FindBy(xpath = "//*[@id=\"squareTotalTo\"]")
+    public TextInput generalTo;
+
+    @ElementTitle("Кухня от")
+    @FindBy(xpath = "//*[@id=\"squareKitchenFrom\"]")
+    public TextInput kitchenFrom;
+
+    @ElementTitle("Кухня до")
+    @FindBy(xpath = "//*[@id=\"squareKitchenTo\"]")
+    public TextInput kitchenTo;
+
+
 
 
     @ElementTitle("Не первый этаж")
@@ -80,6 +94,23 @@ public class DomclickSearchFilterPage extends Page {
 
     // Этаж: от 5 до 15
     //Этажность: от 3 до 20
+    @ElementTitle("Этаж от")
+    @FindBy(xpath = "//*[@id=\"floorFrom\"]")
+    public TextInput floorFrom;
+
+    @ElementTitle("Этаж до")
+    @FindBy(xpath = "//*[@id=\"floorTo\"]")
+    public TextInput floorTo;
+
+    @ElementTitle("Этажность от")
+    @FindBy(xpath = "//*[@id=\"floorsFrom\"]")
+    public TextInput allFloorFrom;
+
+    @ElementTitle("Этажность до")
+    @FindBy(xpath = "//*[@id=\"floorsTo\"]")
+    public TextInput allFloorTo;
+
+
 
 
     @ElementTitle("Раздельный санузел")

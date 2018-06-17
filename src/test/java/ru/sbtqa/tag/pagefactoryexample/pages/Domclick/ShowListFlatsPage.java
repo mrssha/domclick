@@ -39,7 +39,7 @@ public class ShowListFlatsPage extends Page {
                 new HtmlElementDecorator(new HtmlElementLocatorFactory(PageFactory.getDriver())), this);
     }
 
-    /*
+
     //Так не работает
     @ActionTitle("выбирает из списка квартиру номер")
     public void chooseFlat(String number){
@@ -47,5 +47,5 @@ public class ShowListFlatsPage extends Page {
 
         results.get(num-1).sendKeys(Keys.ENTER);
     }
-    */
+
 }

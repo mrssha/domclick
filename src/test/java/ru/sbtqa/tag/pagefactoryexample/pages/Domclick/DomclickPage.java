@@ -32,10 +32,12 @@ public class DomclickPage extends Page {
                 new HtmlElementDecorator(new HtmlElementLocatorFactory(PageFactory.getDriver())), this);
     }
 
+    /*
     @ActionTitle("выбирает регион")
     public void searchRegion(String searchText){
         search.sendKeys(searchText);
         search.sendKeys(Keys.ENTER);
     }
+    */
 
 }
