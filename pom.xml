@@ -5,6 +5,7 @@
   <artifactId>page-factory-example</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
+
   <name>page-factory-example</name>
   <dependencies>
     <dependency>

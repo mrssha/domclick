@@ -19,10 +19,13 @@ public class Flat extends Page {
 
     // Не находит элемент
     //Caused by: org.openqa.selenium.ElementNotVisibleException: element not visible
-    @ElementTitle("Квартира на одобрение")
+    //@ElementTitle("Квартира на одобрение")
     @FindBy(xpath = "//*[@id=\"content\"]/div/main/div/div[3]/div[2]/button")
+    @ElementTitle("Квартира на одобрение")
     //@RedirectsTo(page = ShowListFlatsPage.class)
     public Button pressFlatToOK;
+
+
 
 
     public Flat() {
