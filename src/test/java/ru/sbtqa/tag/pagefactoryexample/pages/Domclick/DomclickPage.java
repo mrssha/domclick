@@ -23,6 +23,9 @@ public class DomclickPage extends Page {
     @FindBy(xpath = "//h1[contains(text(),'ДомКлик')]")
     public TextInput titlePage;
 
+    @FindBy(xpath = "//div[@class='offers-list']/a[3]")
+    public TextInput imageWait;
+
     @ElementTitle("Поиск по регионам")
     @FindBy(xpath = "//span[@class='dropdown__value']")
     public Button searchRegion;
@@ -48,6 +51,9 @@ public class DomclickPage extends Page {
 
         new WebDriverWait(PageFactory.getDriver(), PageFactory.getTimeOutInSeconds())
                 .until(ExpectedConditions.elementToBeClickable(searchRegion));
+
+        new WebDriverWait(PageFactory.getDriver(), PageFactory.getTimeOutInSeconds())
+                .until(ExpectedConditions.elementToBeClickable(imageWait));
 
     }
 
