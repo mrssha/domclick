@@ -1,13 +1,18 @@
 package ru.sbtqa.tag.pagefactoryexample.pages.Domclick;
 
+import org.omg.CORBA.SystemException;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.sbtqa.tag.pagefactory.Page;
 import ru.sbtqa.tag.pagefactory.PageFactory;
 import ru.sbtqa.tag.pagefactory.annotations.ActionTitle;
 import ru.sbtqa.tag.pagefactory.annotations.ElementTitle;
 import ru.sbtqa.tag.pagefactory.annotations.PageEntry;
 import ru.sbtqa.tag.pagefactory.annotations.RedirectsTo;
+import ru.sbtqa.tag.pagefactory.exceptions.PageException;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
@@ -17,12 +22,24 @@ import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory
 @PageEntry(title = "Домклик")
 public class DomclickPage extends Page {
 
-    @ElementTitle("Поиск по регионам")
-    @FindBy(xpath = "//*[@id=\"content\"]/div/main/div/div[1]/form/div[1]/div/span")
-    public TextInput search;
+    @FindBy(xpath = "//h1[contains(text(),'ДомКлик')]")
+    public TextInput titlePage;
 
-    @ElementTitle("Начать подбор")
-    @FindBy(xpath = "//*[@id=\"content\"]/div/main/div/div[1]/form/div[2]/button")
+    @ElementTitle("Поиск по регионам")
+    @FindBy(xpath = "//span[@class='dropdown__value']")
+    public Button searchRegion;
+
+    @ElementTitle("Ввод города")
+    @FindBy(xpath = "//div/input[@placeholder='Поиск по регионам']")
+    public TextInput enterCity;
+
+    @ElementTitle("Выбор города")
+    @FindBy(xpath = "//div[@class='region-select__suggestion-name']")
+    public Button chooseCity;
+
+    @ElementTitle("Начать подбор/Показать")
+    //@FindBy(xpath = "//button[text()='Начать подбор']")
+    @FindBy(xpath = "//button[contains(text(),'Показать') or text()='Начать подбор']")
     @RedirectsTo(page = DomclickSearchFilterPage.class)
     public Button startSearch;
 
@@ -30,14 +47,20 @@ public class DomclickPage extends Page {
     public DomclickPage() {
         PageFactory.initElements(
                 new HtmlElementDecorator(new HtmlElementLocatorFactory(PageFactory.getDriver())), this);
+
+        new WebDriverWait(PageFactory.getDriver(), PageFactory.getTimeOutInSeconds())
+                .until(ExpectedConditions.elementToBeClickable(searchRegion));
+
     }
 
-    /*
-    @ActionTitle("выбирает регион")
-    public void searchRegion(String searchText){
-        search.sendKeys(searchText);
-        search.sendKeys(Keys.ENTER);
+
+    @ActionTitle("ожидаем елемент")
+    public void waitForElement(String elementString) throws PageException{
+
+        WebElement element = this.getElementByTitle(elementString);
+
+        new WebDriverWait(PageFactory.getDriver(), PageFactory.getTimeOutInSeconds())
+                .until(ExpectedConditions.elementToBeClickable(element));
     }
-    */
 
 }

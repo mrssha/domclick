@@ -7,6 +7,7 @@
   <packaging>jar</packaging>
 
   <name>page-factory-example</name>
+
   <dependencies>
     <dependency>
       <groupId>ru.sbtqa.tag</groupId>

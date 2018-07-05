@@ -3,6 +3,8 @@ package ru.sbtqa.tag.pagefactoryexample.pages.Domclick;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.sbtqa.tag.pagefactory.Page;
 import ru.sbtqa.tag.pagefactory.PageFactory;
 import ru.sbtqa.tag.pagefactory.annotations.ActionTitle;
@@ -23,13 +25,17 @@ import java.util.List;
 @PageEntry(title = "Список квартир")
 public class ShowListFlatsPage extends Page {
 
+    private static String chosenFlatId;
 
+
+    /*
     @ElementTitle("Результаты поиска")
     @FindBy(xpath = "//*[@id=\"content\"]/div/main/div/div/div[2]/div[1]/div[2]")
     private List<Link> results;
+    */
 
     @ElementTitle("Первая квартира в списке")
-    @FindBy(xpath = "//*[@id=\"content\"]/div/main/div/div/div[2]/div[1]/div[2]/a[1]/div[2]")
+    @FindBy(xpath = "//div[@class='offers-list']/a[1]")
     @RedirectsTo(page = Flat.class)
     public Button firstInList;
 
@@ -37,15 +43,28 @@ public class ShowListFlatsPage extends Page {
     public ShowListFlatsPage() {
         PageFactory.initElements(
                 new HtmlElementDecorator(new HtmlElementLocatorFactory(PageFactory.getDriver())), this);
+
+        new WebDriverWait(PageFactory.getDriver(), PageFactory.getTimeOutInSeconds())
+                .until(ExpectedConditions.elementToBeClickable(firstInList));
+
+        chosenFlatId = firstInList.getAttribute("href");
+        System.out.println(firstInList.getAttribute("href"));
+
+    }
+
+    public static String getChosenFlatId(){
+        return chosenFlatId;
     }
 
 
     //Так не работает
+    /*
     @ActionTitle("выбирает из списка квартиру номер")
     public void chooseFlat(String number){
         int num = Integer.parseInt(number);
 
         results.get(num-1).sendKeys(Keys.ENTER);
     }
+    */
 
 }
