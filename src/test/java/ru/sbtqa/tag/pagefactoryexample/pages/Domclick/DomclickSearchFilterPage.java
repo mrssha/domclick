@@ -1,6 +1,7 @@
 package ru.sbtqa.tag.pagefactoryexample.pages.Domclick;
 
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,14 +11,13 @@ import ru.sbtqa.tag.pagefactory.annotations.ActionTitle;
 import ru.sbtqa.tag.pagefactory.annotations.ElementTitle;
 import ru.sbtqa.tag.pagefactory.annotations.PageEntry;
 import ru.sbtqa.tag.pagefactory.annotations.RedirectsTo;
-import ru.yandex.qatools.htmlelements.annotations.Name;
+import ru.sbtqa.tag.pagefactory.exceptions.PageException;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.CheckBox;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
-import java.util.List;
 
 @PageEntry(title = "Фильтр поиска")
 public class DomclickSearchFilterPage extends Page {
@@ -138,21 +138,14 @@ public class DomclickSearchFilterPage extends Page {
 
     }
 
-    /*
+
     @ActionTitle("проверяем текст элемента")
-    public void checkNameField(String nameField){
-        Assert.assertEquals("Неверный текст элемнта " + searchRegion.getName(), searchRegion.getAttribute("after"), nameField);
+    public void checkNameField(String elementString, String nameField) throws PageException {
+        WebElement element = this.getElementByTitle(elementString);
 
-    }
-    *
-    */
+        Assert.assertEquals("Неверный текст элемнта " + elementString,
+                element.getAttribute("textContent"), nameField);
 
-    @ActionTitle("проверяем статус чекбоксов")
-    public void checkStatus(){
-        System.out.println(oneRoom.isSelected());
-        System.out.println(twoRooms.isSelected());
-        System.out.println(threeRooms.isSelected());
-        System.out.println(onlyWithPhoto.isSelected());
     }
 
 }

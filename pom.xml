@@ -35,7 +35,7 @@
           <skipTests>false</skipTests>
           <argLine>
             -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-            -Dcucumber.options="--plugin ru.sbtqa.tag.pagefactory.support.TagPFAllureReporter --plugin pretty"
+            -Dcucumber.options="--plugin ru.sbtqa.tag.pagefactory.support.TagPFAllureReporter"
           </argLine>
         </configuration>
         <dependencies>

@@ -10,11 +10,9 @@ import ru.sbtqa.tag.pagefactory.annotations.ActionTitle;
 import ru.sbtqa.tag.pagefactory.annotations.ElementTitle;
 import ru.sbtqa.tag.pagefactory.annotations.PageEntry;
 import ru.yandex.qatools.htmlelements.element.Button;
-import ru.yandex.qatools.htmlelements.element.Link;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
-import java.util.List;
 
 /**
  * Created by Maria on 19.06.2018.
@@ -37,11 +35,10 @@ public class FavoritesPage extends Page {
 
     @ActionTitle("проверяем идендификатор квартиры в избранном")
     public void checkResult(){
-
         String flatLaterChosen = ShowListFlatsPage.getChosenFlatId();
         String flatInFavorites = firstSavedFlat.getAttribute("href");
-        System.out.println(flatLaterChosen);
-        System.out.println(flatInFavorites);
+        //System.out.println(flatLaterChosen);
+        //System.out.println(flatInFavorites);
         Assert.assertEquals("Неверный идендификатор подобранной квартиры", flatLaterChosen, flatInFavorites);
     }
 
