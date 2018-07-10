@@ -12,6 +12,7 @@ import ru.sbtqa.tag.pagefactory.annotations.ElementTitle;
 import ru.sbtqa.tag.pagefactory.annotations.PageEntry;
 import ru.sbtqa.tag.pagefactory.annotations.RedirectsTo;
 import ru.sbtqa.tag.pagefactory.exceptions.PageException;
+import ru.sbtqa.tag.pagefactoryexample.stepdefs.Singleton;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.CheckBox;
 import ru.yandex.qatools.htmlelements.element.TextInput;
@@ -28,11 +29,9 @@ public class DomclickSearchFilterPage extends Page {
 
     @ElementTitle("Поиск по регионам")
     @FindBy(xpath = "//div[@class='region-select']/span")
-    public Button  searchRegion;
+    public Button searchRegion;
 
     @ElementTitle("1 комната")
-    //span[text()='1']
-    //label[input[@name='rooms']]/span[text()='1']
     @FindBy(xpath = "//label[input[@name='rooms' and @id='0']]/span")
     public CheckBox oneRoom;
 
@@ -44,7 +43,6 @@ public class DomclickSearchFilterPage extends Page {
     @FindBy(xpath = "//label[input[@name='rooms' and @id='2']]/span")
     public CheckBox threeRooms;
 
-
     @ElementTitle("Минимальная цена")
     @FindBy(xpath = "//input[@name='price__gte']")
     public TextInput fromPrice;
@@ -53,19 +51,10 @@ public class DomclickSearchFilterPage extends Page {
     @FindBy(xpath = "//input[@name='price__lte']")
     public TextInput toPrice;
 
-    //контрол убрали
-    @ElementTitle("Можно в ипотеку")
-    @FindBy(xpath = "//*[@id=\"content\"]/div/main/div/div[1]/div[2]/form/div/div[4]/div[1]/div/label[1]/span")
-    public CheckBox ipoteka;
-
-
     @ElementTitle("Скидка 0,3% на ставку")
     @FindBy(xpath = "//label[input[@name='discounts']]/span")
     public CheckBox skidka;
 
-
-    //Площадь общая: от 30 до 100
-    //Площадь кухни: от 8 до 15
     @ElementTitle("Общая площадь от")
     @FindBy(xpath = "//input[@name='area__gte']")
     public TextInput generalFrom;
@@ -82,19 +71,14 @@ public class DomclickSearchFilterPage extends Page {
     @FindBy(xpath = "//input[@name='kitchen_space__lte']")
     public TextInput kitchenTo;
 
-
-
-
     @ElementTitle("Не первый этаж")
     @FindBy(xpath = "//label[input[@name='floor_not_first']]/span")
-    public CheckBox notfirst;
+    public CheckBox notFirst;
 
     @ElementTitle("Не последний этаж")
     @FindBy(xpath = "//label[input[@name='floor_not_last']]/span")
-    public CheckBox notlast;
+    public CheckBox notLast;
 
-    // Этаж: от 5 до 15
-    //Этажность: от 3 до 20
     @ElementTitle("Этаж от")
     @FindBy(xpath = "//input[@name='floor__gte']")
     public TextInput floorFrom;
@@ -129,12 +113,17 @@ public class DomclickSearchFilterPage extends Page {
     public Button showList;
 
 
-    public DomclickSearchFilterPage(){
+    public DomclickSearchFilterPage() {
         PageFactory.initElements(
                 new HtmlElementDecorator(new HtmlElementLocatorFactory(PageFactory.getDriver())), this);
 
+        Singleton.getInstance().getWebDriverWaiter()
+                .until(ExpectedConditions.elementToBeClickable(showList));
+
+        /*
         new WebDriverWait(PageFactory.getDriver(), PageFactory.getTimeOutInSeconds())
                 .until(ExpectedConditions.elementToBeClickable(showList));
+                */
 
     }
 
@@ -145,7 +134,6 @@ public class DomclickSearchFilterPage extends Page {
 
         Assert.assertEquals("Неверный текст элемнта " + elementString,
                 element.getAttribute("textContent"), nameField);
-
     }
 
 }

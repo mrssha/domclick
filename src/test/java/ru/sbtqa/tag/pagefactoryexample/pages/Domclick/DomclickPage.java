@@ -1,5 +1,6 @@
 package ru.sbtqa.tag.pagefactoryexample.pages.Domclick;
 
+import org.aspectj.weaver.World;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,6 +12,7 @@ import ru.sbtqa.tag.pagefactory.annotations.ElementTitle;
 import ru.sbtqa.tag.pagefactory.annotations.PageEntry;
 import ru.sbtqa.tag.pagefactory.annotations.RedirectsTo;
 import ru.sbtqa.tag.pagefactory.exceptions.PageException;
+import ru.sbtqa.tag.pagefactoryexample.stepdefs.Singleton;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
@@ -39,7 +41,6 @@ public class DomclickPage extends Page {
     public Button chooseCity;
 
     @ElementTitle("Начать подбор/Показать")
-    //@FindBy(xpath = "//button[text()='Начать подбор']")
     @FindBy(xpath = "//button[contains(text(),'Показать') or text()='Начать подбор']")
     @RedirectsTo(page = DomclickSearchFilterPage.class)
     public Button startSearch;
@@ -49,22 +50,35 @@ public class DomclickPage extends Page {
         PageFactory.initElements(
                 new HtmlElementDecorator(new HtmlElementLocatorFactory(PageFactory.getDriver())), this);
 
+        Singleton.getInstance().getWebDriverWaiter()
+                .until(ExpectedConditions.elementToBeClickable(searchRegion));
+
+        Singleton.getInstance().getWebDriverWaiter()
+                .until(ExpectedConditions.elementToBeClickable(imageWait));
+
+
+        /*
         new WebDriverWait(PageFactory.getDriver(), PageFactory.getTimeOutInSeconds())
                 .until(ExpectedConditions.elementToBeClickable(searchRegion));
 
         new WebDriverWait(PageFactory.getDriver(), PageFactory.getTimeOutInSeconds())
                 .until(ExpectedConditions.elementToBeClickable(imageWait));
+                */
 
     }
 
-
     @ActionTitle("ожидаем елемент")
-    public void waitForElement(String elementString) throws PageException{
+    public void waitForElement(String elementString) throws PageException {
 
         WebElement element = this.getElementByTitle(elementString);
 
+        Singleton.getInstance().getWebDriverWaiter()
+                .until(ExpectedConditions.elementToBeClickable(element));
+
+        /*
         new WebDriverWait(PageFactory.getDriver(), PageFactory.getTimeOutInSeconds())
                 .until(ExpectedConditions.elementToBeClickable(element));
+                */
     }
 
 }
