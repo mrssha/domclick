@@ -3,7 +3,6 @@ package ru.sbtqa.tag.pagefactoryexample.pages.Domclick;
 import org.junit.Assert;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.sbtqa.tag.pagefactory.Page;
 import ru.sbtqa.tag.pagefactory.PageFactory;
 import ru.sbtqa.tag.pagefactory.annotations.ActionTitle;
@@ -33,10 +32,6 @@ public class FavoritesPage extends Page {
         Singleton.getInstance().getWebDriverWaiter()
                 .until(ExpectedConditions.elementToBeClickable(firstSavedFlat));
 
-        /*
-        new WebDriverWait(PageFactory.getDriver(), PageFactory.getTimeOutInSeconds())
-                .until(ExpectedConditions.elementToBeClickable(firstSavedFlat));
-                */
     }
 
     @ActionTitle("проверяем идендификатор квартиры в избранном")

@@ -10,7 +10,10 @@ public class Singleton {
 
     private WebDriverWait waiter;
 
-    private Singleton(){};
+    private Singleton() {
+    }
+
+    ;
 
     public static synchronized Singleton getInstance() {
         if (instance == null) {
@@ -19,11 +22,11 @@ public class Singleton {
         return instance;
     }
 
-    public void setWebDriverWaiter(WebDriverWait waiter){
-        this.waiter = waiter;
+    public WebDriverWait getWebDriverWaiter() {
+        return waiter;
     }
 
-    public WebDriverWait getWebDriverWaiter(){
-        return waiter;
+    public void setWebDriverWaiter(WebDriverWait waiter) {
+        this.waiter = waiter;
     }
 }

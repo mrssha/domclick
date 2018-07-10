@@ -1,10 +1,8 @@
 package ru.sbtqa.tag.pagefactoryexample.pages.Domclick;
 
-import org.aspectj.weaver.World;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.sbtqa.tag.pagefactory.Page;
 import ru.sbtqa.tag.pagefactory.PageFactory;
 import ru.sbtqa.tag.pagefactory.annotations.ActionTitle;
@@ -56,15 +54,6 @@ public class DomclickPage extends Page {
         Singleton.getInstance().getWebDriverWaiter()
                 .until(ExpectedConditions.elementToBeClickable(imageWait));
 
-
-        /*
-        new WebDriverWait(PageFactory.getDriver(), PageFactory.getTimeOutInSeconds())
-                .until(ExpectedConditions.elementToBeClickable(searchRegion));
-
-        new WebDriverWait(PageFactory.getDriver(), PageFactory.getTimeOutInSeconds())
-                .until(ExpectedConditions.elementToBeClickable(imageWait));
-                */
-
     }
 
     @ActionTitle("ожидаем елемент")
@@ -75,10 +64,6 @@ public class DomclickPage extends Page {
         Singleton.getInstance().getWebDriverWaiter()
                 .until(ExpectedConditions.elementToBeClickable(element));
 
-        /*
-        new WebDriverWait(PageFactory.getDriver(), PageFactory.getTimeOutInSeconds())
-                .until(ExpectedConditions.elementToBeClickable(element));
-                */
     }
 
 }

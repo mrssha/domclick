@@ -3,7 +3,6 @@ package ru.sbtqa.tag.pagefactoryexample.pages.Domclick;
 
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.sbtqa.tag.pagefactory.Page;
 import ru.sbtqa.tag.pagefactory.PageFactory;
 import ru.sbtqa.tag.pagefactory.annotations.ElementTitle;
@@ -36,10 +35,6 @@ public class ShowListFlatsPage extends Page {
         Singleton.getInstance().getWebDriverWaiter()
                 .until(ExpectedConditions.elementToBeClickable(firstInList));
 
-        /*
-        new WebDriverWait(PageFactory.getDriver(), PageFactory.getTimeOutInSeconds())
-                .until(ExpectedConditions.elementToBeClickable(firstInList));
-                */
 
         chosenFlatId = firstInList.getAttribute("href");
     }
